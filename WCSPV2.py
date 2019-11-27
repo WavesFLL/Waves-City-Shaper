@@ -40,6 +40,7 @@ def RotInches(steerin,speedie,millimeters):
 def constrain(val, min_val, max_val):
     return min(max_val, max(min_val, val))
 
+<<<<<<< refs/remotes/origin/BreakCodeInToFiles
 def StuffInCircle(): #Our first program which does architecture and starts crane
     time.sleep(0.5) #Waits for 0.5 seconds so we can remove our hands
     Lights.all_off() #Turns all lights off
@@ -59,6 +60,15 @@ def StuffInCircle(): #Our first program which does architecture and starts crane
     DriveBase.on_for_rotations(steering=-25,speed=-90,rotations=4) #Drives back to home
     DriveBase.on_for_rotations(steering=0,speed=50,rotations=-1)
     time.sleep(2)
+=======
+def Crane(): #The second program, finishes crane
+    time.sleep(0.5) #Waits for us to move our hands
+    #Makes sure it knows where the arm is
+    Arm.on(-10)
+    Arm.wait_until_not_moving(timeout=3000)
+    Arm.off(brake=True)
+    Arm.on_for_degrees(speed=25,degrees=30, block=False)
+>>>>>>> moved stuff in circle software
 
 <<<<<<< HEAD
     Smooth_B(steerings=20,speedie=25,revolutions=1.25) #Drives toward black line
