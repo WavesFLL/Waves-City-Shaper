@@ -59,14 +59,8 @@ def StuffInCircle(): #Our first program which does architecture and starts crane
     DriveBase.on_for_rotations(steering=-25,speed=-90,rotations=4) #Drives back to home
     DriveBase.on_for_rotations(steering=0,speed=50,rotations=-1)
     time.sleep(2)
-def Crane(): #The second program, finishes crane
-    time.sleep(0.5) #Waits for us to move our hands
-    #Makes sure it knows where the arm is
-    Arm.on(-10)
-    Arm.wait_until_not_moving(timeout=3000)
-    Arm.off(brake=True)
-    Arm.on_for_degrees(speed=25,degrees=30, block=False)
 
+<<<<<<< HEAD
     Smooth_B(steerings=20,speedie=25,revolutions=1.25) #Drives toward black line
     
     #Follows said line with the right color sensor, 
@@ -122,6 +116,15 @@ def Alift (): #Third program does Traffic jam
    Pusher.on_for_degrees(speed=100,degrees=-300)
    Arm.on_for_degrees(speed=-5,degrees=90,block=False)
    DriveBase.on_for_rotations(steering=0,speed=-90,rotations=5.5)
+=======
+def Cake (): #Fourth program takes the cake to a circle
+    #Waits for us to move our hands
+    time.sleep(0.5)
+    #Drives foward to put Cake in a circle
+    DriveBase.on_for_rotations(steering=0,speed=30,rotations=2.25)
+    #Drives back to home
+    DriveBase.on_for_rotations(steering=-10,speed=50,rotations=-6) 
+>>>>>>> BreakCodeInToFiles
 def TheStick(): #The last program which does swing, safety factor, and elevator
     #Makes sure rotator is in right spot
     Pusher.run_direct(duty_cycle_sp = 30)
