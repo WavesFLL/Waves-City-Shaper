@@ -1,32 +1,37 @@
 #!/usr/bin/env micropython
-def TheStick(): #The last program which does swing, safety factor, and elevator
+
+from time import sleep
+import WCSUtilities as WSCUtil
+
+
+def TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens): #The last program which does swing, safety factor, and elevator
     #Makes sure rotator is in right spot
     Pusher.run_direct(duty_cycle_sp = 30)
     Pusher.wait_until_not_moving(timeout=3000)
     Pusher.off(brake=True)
     Pusher.on_for_degrees(speed=25,degrees=-80)
     Btn.wait_for_bump('enter')
-    time.sleep(1)
-    MotSensVar = CMOTSENS.position
+    sleep(1)
+    MotSensVar = CMotSens.position
     #Alternates following the wall and the line
-    while(CMOTSENS.position<= (360*1.5)+MotSensVar):
+    while(CMotSens.position<= (360*1.5)+MotSensVar):
         error = (29.6 - USS.distance_centimeters)*10
-        error = constrain(error,-100,100)
+        error = WSCUtil.constrain(error,-100,100)
         error = 0 - error
         DriveBase.on(steering=error,speed=30) 
     while(CSL.reflected_light_intensity > 50):
         error = (29.6 - USS.distance_centimeters)*10
-        error = constrain(error,-100,100)
+        error = WSCUtil.constrain(error,-100,100)
         error = 0 - error
         DriveBase.on(steering=error,speed=30) 
-    MotSensVar = CMOTSENS.position
-    while(CMOTSENS.position<= (360*1.5)+MotSensVar):
+    MotSensVar = CMotSens.position
+    while(CMotSens.position<= (360*1.5)+MotSensVar):
         error = (29.6 - USS.distance_centimeters)*10
-        error = constrain(error,-100,100)
+        error = WSCUtil.constrain(error,-100,100)
         error = 0 - error
         DriveBase.on(steering=error,speed=30) 
-    MotSensVar = CMOTSENS.position
-    while(CMOTSENS.position< (360*1.75)+MotSensVar):
+    MotSensVar = CMotSens.position
+    while(CMotSens.position< (360*1.75)+MotSensVar):
         DriveBase.on(steering=(45-CSR.reflected_light_intensity)*-1,speed=30)
 
     while(CSL.reflected_light_intensity<80): 
@@ -35,15 +40,15 @@ def TheStick(): #The last program which does swing, safety factor, and elevator
     while(CSL.reflected_light_intensity>20): 
         DriveBase.on(steering=(45-CSR.reflected_light_intensity)*-2,speed=15) 
      
-    MotSensVar = CMOTSENS.position
-    while(CMOTSENS.position< (360*1)+MotSensVar):
+    MotSensVar = CMotSens.position
+    while(CMotSens.position< (360*1)+MotSensVar):
         DriveBase.on(steering=(45-CSR.reflected_light_intensity)*-1.25,speed=15)
     DriveBase.off()
     #Puts rotator down and drives foward to do swing
     Pusher.on_for_degrees(speed=30,degrees=260)
 
-    MotSensVar = CMOTSENS.position
-    while(CMOTSENS.position< (360*0.75)+MotSensVar):
+    MotSensVar = CMotSens.position
+    while(CMotSens.position< (360*0.75)+MotSensVar):
         DriveBase.on(steering=(45-CSR.reflected_light_intensity)*-1.25,speed=15)
     DriveBase.off()
 
@@ -65,5 +70,5 @@ def TheStick(): #The last program which does swing, safety factor, and elevator
     DriveBase.on_for_rotations(steering=-100,speed=20,rotations=0.6)
     Arm.on_for_degrees(speed=10,degrees=10,block=False)
     Pusher.on_for_degrees(speed=-100, degrees=1080)
-    time.sleep(1)
+    sleep(1)
     DriveBase.on_for_rotations(steering=0,speed=100,rotations=-1)
