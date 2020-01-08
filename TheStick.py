@@ -4,13 +4,13 @@ from time import sleep
 import WCSUtilities as WSCUtil
 
 
-def TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens): #The last program which does swing, safety factor, and elevator
+def TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BtnUsed): #The last program which does swing, safety factor, and elevator
     #Makes sure rotator is in right spot
     Pusher.run_direct(duty_cycle_sp = 30)
     Pusher.wait_until_not_moving(timeout=3000)
     Pusher.off(brake=True)
     Pusher.on_for_degrees(speed=25,degrees=-80)
-    Btn.wait_for_bump('enter')
+    Btn.wait_for_bump(BtnUsed)
     sleep(1)
     MotSensVar = CMotSens.position
     #Alternates following the wall and the line
