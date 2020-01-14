@@ -19,3 +19,15 @@ def RotInches(DriveBase,steer,speedie,millimeters):
     DriveBase.on_for_rotations(steering=steer,speed=speedie,rotations=millimeters/176)
 def constrain(val, min_val, max_val):
     return min(max_val, max(min_val, val))
+
+def PID(target,feedback,Kp,Ki,Kd,pasterror=0,integral=0):
+    error = target - feedback
+    
+    proportional = error
+    integral += error
+    derivative = error - pasterror 
+
+    pasterror = error
+
+
+    return ((proportional * Kp) + (integral * Ki) + (derivative * Kd))

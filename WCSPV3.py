@@ -58,7 +58,7 @@ while True:
         Lights.set_color("LEFT","RED")
         Lights.set_color("RIGHT","RED")
         if(Btn.left):
-            TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,'left')
+            TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,'left')
         if(Btn.up):
             pass
         if(Btn.right): 

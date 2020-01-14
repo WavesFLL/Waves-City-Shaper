@@ -4,7 +4,7 @@ from time import sleep
 import WCSUtilities as WSCUtil
 
 
-def TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BtnUsed): #The last program which does swing, safety factor, and elevator
+def TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,BtnUsed): #The last program which does swing, safety factor, and elevator
     #Makes sure rotator is in right spot
     Pusher.run_direct(duty_cycle_sp = 30)
     Pusher.wait_until_not_moving(timeout=3000)
@@ -107,10 +107,12 @@ def TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BtnUsed): #The last p
     DriveBase.on_for_rotations(steering=-100, speed=20, rotations=0.55)
     DriveBase.on_for_rotations(steering=0,speed=20,rotations=0.15)
     #Arm.on_for_degrees(speed=10,degrees=5,block=False)
-    Pusher.on_for_degrees(speed=-100, degrees=1080)
-    DriveBase.on_for_rotations(steering=100,speed=30,rotations=0.5)
-    DriveBase.on_for_rotations(steering=0,speed=30,rotations=1)
-    DriveBase.on_for_rotations(steering=-100,speed=15,rotations=0.35)
+    Pusher.on_for_degrees(speed=-25, degrees=1080)
+    #DriveBase.on_for_rotations(steering=100,speed=20,rotations=0.5)
+    #DriveBase.on_for_rotations(steering=0,speed=20,rotations=1)
+    WSCUtil.Smooth(DriveBase,BMotSens,steerings=100, speedie=20, revolutions=0.45)
+    WSCUtil.Smooth(DriveBase,BMotSens,steerings=0, speedie=20, revolutions=1)
+    DriveBase.on_for_rotations(steering=-100,speed=15,rotations=0.5)
     Arm.off(brake=False)
     sleep(1)
     MotSensVar = CMotSens.position
@@ -128,14 +130,8 @@ def TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BtnUsed): #The last p
     DriveBase.on_for_rotations(steering=-100,speed=-10,rotations=0.45)
     MotSensVar = CMotSens.position
     DriveBase.on(steering=-15,speed=-95)
-    while(CMotSens.position>=(360*-4.5)+MotSensVar): pass
+    while(CMotSens.position>=(360*-4)+MotSensVar): pass
     
    
-    DriveBase.on_for_rotations(steering=0,speed=-100,rotations=7)
-    #Pusher.on_for_degrees(speed=100,degrees=150,block=False)
-    #DriveBase.on_for_rotations(steering=0,speed=40,rotations=1.5)
-    #DriveBase.on_for_rotations(steering=-100,speed=20,rotations=0.6)
-    #Arm.on_for_degrees(speed=10,degrees=10,block=False)
-    #Pusher.on_for_degrees(speed=-100, degrees=1080)
-    #sleep(1)
-    #DriveBase.on_for_rotations(steering=0,speed=100,rotations=-1)#
+    DriveBase.on_for_rotations(steering=0,speed=-100,rotations=7.5)
+    
