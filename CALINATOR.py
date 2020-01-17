@@ -6,6 +6,7 @@ from ev3dev2.motor import * #Motors, for moving
 from time import sleep #Timers, for waiting
 from ev3dev2.sensor.lego import ColorSensor #Sensors, for sensing
 from ev3dev2.sensor.lego import UltrasonicSensor
+from ev3dev2.sensor.lego import GyroSensor
 from ev3dev2.sensor import INPUT_1, INPUT_2 #Ports, for sensors to be plugged into
 from ev3dev2.button import * #Buttons, for Master program control
 from ev3dev2.led import *
@@ -24,7 +25,7 @@ try:
     CSL = ColorSensor(INPUT_1) #Color sensors
     CSR = ColorSensor(INPUT_2) #Color sensors
     USS = UltrasonicSensor() #Ultrasonic sensor
-    
+    GYRO = GyroSensor()
     #Defines buttons
    
     #Defines sensing motors

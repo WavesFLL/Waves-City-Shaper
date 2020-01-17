@@ -18,7 +18,7 @@ def Alift (DriveBase,Arm,Pusher,CSR,USS): #Third program does Traffic jam
    #Rotates are to lift traffic jam
    Pusher.on_for_degrees(speed=25,degrees=450)
    #Waits for two seconds to make sure the traffic jam is cleared
-   sleep(2)
+   sleep(1)
    #Rotates arm down and drives back to home
    Pusher.on_for_degrees(speed=100,degrees=-300)
    Arm.on_for_degrees(speed=-5,degrees=90,block=False)
