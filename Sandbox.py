@@ -26,7 +26,7 @@ CMotSens = MediumMotor(OUTPUT_C)
 BMotSens = MediumMotor(OUTPUT_B)
 #Large wheel circumfrence: 216mm
 #small wheel: 176mm
-BigRPM = -60
+BigRPM = 60
 BigRotations = 3.5
 #Mulitiply the main robot's wheel RPM and distance by 2.4 to get the attachment wheel RPM and distance
 SmallRPM = BigRPM*-2.4
@@ -39,6 +39,6 @@ SmallRotations = BigRotations*2.4
 Arm.on_for_degrees(75,15)
 Pusher.on_for_rotations(SpeedRPM(SmallRPM), SmallRotations, brake=True, block=False)
 DriveBase.on_for_rotations(0, SpeedRPM(BigRPM), BigRotations, brake=True, block=False)
-sleep(1.5)
+sleep(2.5)
 Arm.off(brake=False)
 sleep(5)

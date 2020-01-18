@@ -16,6 +16,7 @@ from Crane import *
 from Alift import *
 from Cake import *
 from TheStick import *
+from Bridge import *
 
 #Define motors and sensors
 Arm = LargeMotor(OUTPUT_A) #Up and down motion
@@ -60,7 +61,7 @@ while True:
         if(Btn.left):
             TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,'left')
         if(Btn.up):
-            pass
+            Bridge(Arm,DriveBase,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,Lights)
         if(Btn.right): 
             pass
         if(Btn.down):
