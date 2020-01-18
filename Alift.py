@@ -11,7 +11,7 @@ def Alift (DriveBase,Arm,Pusher,CSR,USS): #Third program does Traffic jam
         error = (11 - USS.distance_centimeters)*10
         error = WCSUtil.constrain(error,-100,100)
         error = 0 - error
-        DriveBase.on(steering=error,speed=30)
+        DriveBase.on(steering=error,speed=35)
    #Manuvers to get traffic jam
    WCSUtil.RotInches(DriveBase,steer=0,speedie=30,millimeters=130)
    DriveBase.on_for_rotations(steering=100,speed=30,rotations=0.1)

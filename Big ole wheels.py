@@ -12,7 +12,7 @@
 from ev3dev2.motor import * #Motors, for moving
 from time import sleep #Timers, for waiting
 from ev3dev2.sensor.lego import ColorSensor #Sensors, for sensing
-from ev3dev2.sensor.lego import UltrasonicSensor
+from ev3dev2.sensor.lego import UltrasonicSensor, GyroSensor
 from ev3dev2.sensor import INPUT_1, INPUT_2 #Ports, for sensors to be plugged into
 from ev3dev2.button import * #Buttons, for Master program control
 from ev3dev2.led import *
@@ -25,6 +25,7 @@ Pusher = MediumMotor(OUTPUT_D) #Out and in and rotating motions
 CSL = ColorSensor(INPUT_1) #Color sensors
 CSR = ColorSensor(INPUT_2) #Color sensors
 USS = UltrasonicSensor() #Ultrasonic sensor
+GYRO = GyroSensor()
 Lights = Leds()
 #Defines buttons
 Btn = Button()
@@ -38,44 +39,46 @@ Lights.all_off()
 import WCSUtilities as WSCUtil
 #Large wheel circumfrence: 216mm
 #small wheel: 176mm
-BigRPM = -60
+"""BigRPM = -60
 BigRotations = 4
 #Mulitiply the main robot's wheel RPM and distance by 2.4 to get the attachment wheel RPM and distance
 SmallRPM = BigRPM*2.4
 SmallRotations = BigRotations*2.4
+
+
+Btn.wait_for_bump("up")
+    sleep(1)
 #Puts arm up so wheels dont drag against the mat
 Arm.on_for_degrees(speed=30,degrees=-85)
 #Drives out of base East untill the left color sensor sees white
-WSCUtil.Smooth(DriveBase, BMotSens, steerings=0,speedie=85,revolutions=5)
 
 
-DriveBase.on(steering=0,speed=25)
-sleep(0.25)
-while(CSL.reflected_light_intensity < 80): pass
-DriveBase.off()
-sleep(0.2)
-DriveBase.on(steering=-50, speed=10)
 
-while(CSR.reflected_light_intensity > 20): pass
-DriveBase.off
-# Does "Align" with a line again. Where it makes both color sensors on the same plane
-DriveBase.on(steering=50,speed=-10)
-while(CSL.reflected_light_intensity < 60): pass
-DriveBase.on(steering=-50,speed=-10)
-while(CSR.reflected_light_intensity < 60): pass
-DriveBase.on(steering=50,speed=10)
-while(CSL.reflected_light_intensity > 20): pass
-DriveBase.on(steering=-50, speed=10)
-while(CSR.reflected_light_intensity > 20): pass
-DriveBase.off()
 
-DriveBase.on_for_rotations(steering=0, speed=20, rotations=0.5)
-sleep(0.5)
-DriveBase.on(steering=100,speed=-20)
-while(CSL.reflected_light_intensity > 20): pass
-while(CSL.reflected_light_intensity < 80): pass
-DriveBase.off()
+
 #PID
 while(CSR.reflected_light_intensity > 20):
-    DriveBase.on(steering=WSCUtil.constrain(WSCUtil.PID(45, CSL.reflected_light_intensity, Kp=0.5,Ki=0.01,Kd=0.2,Kg=-1, looptime=0.02), -100, 100), speed=25)
+    DriveBase.on(steering=WSCUtil.constrain(WSCUtil.PID(45, CSL.reflected_light_intensity, Kp=0.5,Ki=0.01,Kd=0.2,Kg=-1, looptime=0.02), -100, 100), speed=25)"""
 
+Arm.on_for_degrees(speed=10, degrees=-10)
+MotSensVar = CMotSens.position
+    #Follows the wall out of base
+while(CMotSens.position<= (360*1.5)+MotSensVar):
+    error = (29.6 - USS.distance_centimeters)*10
+    error = WSCUtil.constrain(error,-100,100)
+    error = 0 - error
+    DriveBase.on(steering=error,speed=30) 
+#Starts following line os as not interfered with traffic jam
+while(CSL.reflected_light_intensity > 50):
+    error = (29.6 - USS.distance_centimeters)*10
+    error = WSCUtil.constrain(error,-100,100)
+    error = 0 - error
+    DriveBase.on(steering=error,speed=30) 
+MotSensVar = CMotSens.position
+#Follows wall to re align
+while(CMotSens.position<= (360*1.5)+MotSensVar):
+    error = (29.6 - USS.distance_centimeters)*10
+    error = WSCUtil.constrain(error,-100,100)
+    error = 0 - error
+    DriveBase.on(steering=error,speed=30) 
+MotSensVar = CMotSens.position
