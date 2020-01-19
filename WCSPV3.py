@@ -17,6 +17,7 @@ from Alift import *
 from Cake import *
 from TheStick import *
 from Bridge import *
+from GoForIt import *
 
 #Define motors and sensors
 Arm = LargeMotor(OUTPUT_A) #Up and down motion
@@ -63,7 +64,7 @@ while True:
         if(Btn.up):
             Alift(DriveBase,Arm,Pusher,CSR,USS)
         if(Btn.right): 
-            pass
+            GoForIt(Arm,DriveBase,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,Lights)
         if(Btn.down):
             Cake(DriveBase)
         if(Btn.enter):

@@ -22,7 +22,7 @@ from ev3dev2.led import *
 
 
 
-def Bridge(Arm,DriveBase,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,Lights):
+def GoForIt(Arm,DriveBase,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,Lights):
     Lights.all_off()
     Arm.on_for_degrees(speed=10, degrees=-15)
     MotSensVar = CMotSens.position
@@ -32,7 +32,7 @@ def Bridge(Arm,DriveBase,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,Lights):
         error = WSCUtil.constrain(error,-100,100)
         error = 0 - error
         DriveBase.on(steering=error,speed=35) #Speed used to be 30
-    #Starts following line os as not interfered with traffic jam
+    #Starts following wall os as not interfered with traffic jam
     while(CSL.reflected_light_intensity > 50):
         error = (29.6 - USS.distance_centimeters)*8 # was 10
         error = WSCUtil.constrain(error,-100,100)
@@ -47,16 +47,14 @@ def Bridge(Arm,DriveBase,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,Lights):
         DriveBase.on(steering=error,speed=40) #speed was 30
     MotSensVar = CMotSens.position
     Arm.on_for_degrees(speed=10,degrees=-80, block=False)
-    #Follows line around small curve
 
     while(CMotSens.position < (360*1.75)+MotSensVar):
         DriveBase.on(steering=(45-CSR.reflected_light_intensity)*-0.3,speed=40) #used to be 0.8, 40
 
-    while(CSL.reflected_light_intensity<80): 
-        DriveBase.on(steering=(45-CSR.reflected_light_intensity)*-1.5,speed=15)  
-
-    while(CSL.reflected_light_intensity>20): 
-        DriveBase.on(steering=(45-CSR.reflected_light_intensity)*-2,speed=15) 
+    DriveBase.on(speed = 30, steering = 0)
+    while(CSL.reflected_light_intensity<80): pass 
+    DriveBase.on(speed = 20, steering = 0)    
+    while(CSL.reflected_light_intensity>20): pass
         
     DriveBase.off()
 
@@ -93,4 +91,3 @@ def Bridge(Arm,DriveBase,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,Lights):
     sleep(1.7)
     Arm.off(brake=False)
     sleep(5)
-    
