@@ -37,17 +37,17 @@ while True:
         DriveBase.off(brake=False)
         Arm.off(brake=False)
         Pusher.off(brake=False)
-        Lights.set_color("LEFT","GREEN")
-        Lights.set_color("RIGHT","GREEN")
+        Lights.set_color("LEFT","YELLOW")
+        Lights.set_color("RIGHT","YELLOW")
         
         if(Btn.left):
             StuffInCircle(DriveBase,Lights,Arm,Pusher,CSR)  
         if(Btn.up):
             Crane(DriveBase,Arm,CSL,CSR,BMotSens,CMotSens)
         if(Btn.right): 
-            Alift(DriveBase,Arm,Pusher,CSR,USS)
+            TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,'right')
         if(Btn.down):
-            Cake(DriveBase)
+            pass
         if(Btn.enter):
             Btn.wait_for_released("enter")
             print("New menu!")
@@ -59,13 +59,13 @@ while True:
         Lights.set_color("LEFT","RED")
         Lights.set_color("RIGHT","RED")
         if(Btn.left):
-            TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,'left')
-        if(Btn.up):
             Bridge(Arm,DriveBase,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,Lights)
+        if(Btn.up):
+            Alift(DriveBase,Arm,Pusher,CSR,USS)
         if(Btn.right): 
             pass
         if(Btn.down):
-            pass
+            Cake(DriveBase)
         if(Btn.enter):
             Btn.wait_for_released("enter")
             break

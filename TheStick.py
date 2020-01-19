@@ -15,27 +15,27 @@ def TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,BtnUsed): #T
     MotSensVar = CMotSens.position
     #Follows the wall out of base
     while(CMotSens.position<= (360*1.5)+MotSensVar):
-        error = (29.6 - USS.distance_centimeters)*10
+        error = (29.6 - USS.distance_centimeters)*9 #10
         error = WSCUtil.constrain(error,-100,100)
         error = 0 - error
-        DriveBase.on(steering=error,speed=30) 
+        DriveBase.on(steering=error,speed=40) #used to be 30
     #Starts following line os as not interfered with traffic jam
     while(CSL.reflected_light_intensity > 50):
-        error = (29.6 - USS.distance_centimeters)*10
+        error = (29.6 - USS.distance_centimeters)*9 #10
         error = WSCUtil.constrain(error,-100,100)
         error = 0 - error
-        DriveBase.on(steering=error,speed=30) 
+        DriveBase.on(steering=error,speed=40) #Used to be 30
     MotSensVar = CMotSens.position
     #Follows wall to re align
     while(CMotSens.position<= (360*1.5)+MotSensVar):
-        error = (29.6 - USS.distance_centimeters)*10
+        error = (29.6 - USS.distance_centimeters)*8 #10
         error = WSCUtil.constrain(error,-100,100)
         error = 0 - error
-        DriveBase.on(steering=error,speed=30) 
+        DriveBase.on(steering=error,speed=40) #used to be 30
     MotSensVar = CMotSens.position
    #Follows line around small curve
     while(CMotSens.position< (360*1.75)+MotSensVar):
-        DriveBase.on(steering=(45-CSR.reflected_light_intensity)*-1,speed=30)
+        DriveBase.on(steering=(45-CSR.reflected_light_intensity)*-0.5,speed=40)
 
     while(CSL.reflected_light_intensity<80): 
         DriveBase.on(steering=(45-CSR.reflected_light_intensity)*-2,speed=15)  
@@ -126,7 +126,7 @@ def TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,BtnUsed): #T
     DriveBase.on_for_rotations(steering=0,speed=-10,rotations=0.6)
     DriveBase.on_for_rotations(steering=-100,speed=-10,rotations=0.45)
     MotSensVar = CMotSens.position
-    DriveBase.on(steering=-15,speed=-95)
+    DriveBase.on(steering=-15,speed=-85)
     while(CMotSens.position>=(360*-3)+MotSensVar): pass
     
    
