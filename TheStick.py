@@ -126,9 +126,9 @@ def TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,BtnUsed): #T
     DriveBase.on_for_rotations(steering=0,speed=-10,rotations=0.6)
     DriveBase.on_for_rotations(steering=-100,speed=-10,rotations=0.45)
     MotSensVar = CMotSens.position
-    DriveBase.on(steering=-15,speed=-85)
+    DriveBase.on(steering=-10,speed=-85)
     while(CMotSens.position>=(360*-3)+MotSensVar): pass
     
    
-    DriveBase.on_for_rotations(steering=0,speed=-95,rotations=8.5)
+    DriveBase.on_for_rotations(steering=-1,speed=-95,rotations=8.5)
     

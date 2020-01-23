@@ -18,6 +18,8 @@ def StuffInCircle(DriveBase,Lights,Arm,Pusher,CSR): #Our first program which doe
     Lights.animate_police_lights('RED', 'GREEN', sleeptime=0.05, duration=0, block=False)
     Pusher.on_for_rotations(speed=100,rotations=1) #Pulls pusher in, so it's not touching blue block
     Arm.on_for_degrees(speed=100,degrees=-90, block=False) #Lifts up arm
-    DriveBase.on_for_rotations(steering=-25,speed=-90,rotations=4) #Drives back to home
-    DriveBase.on_for_rotations(steering=0,speed=50,rotations=-1)
+    DriveBase.on_for_rotations(steering=0,speed=25,rotations=-1)
+    DriveBase.on_for_rotations(steering=-25,speed=-95,rotations=3) #Drives back to home
+    DriveBase.on_for_rotations(steering=-10,speed=50,rotations=-2.5)
+    DriveBase.on_for_rotations(steering=100,speed=50,rotations=0.75)
     sleep(2)
