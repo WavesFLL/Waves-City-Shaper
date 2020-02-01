@@ -31,10 +31,12 @@ def BigLong(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,BtnUsed): #Th
     MotSensVar = Pusher.position
     Pusher.on_for_degrees(speed=25,degrees=450, block = False)
     while(Pusher.position < 50+MotSensVar): pass
+    DriveBase.on_for_rotations(steering=0,speed=5,rotations=0.1)
     Arm.on_for_degrees(speed=-4, degrees=50)
     
-    # Rotates North to catch black line so it can do the rest of the run
+    
     Pusher.on_for_degrees(speed=50, degrees=-190, block=False)
+    
     DriveBase.on_for_rotations(steering=0,speed=-25,rotations=0.5)
     DriveBase.on(steering=-50,speed=25)
     while(CSR.color != CSR.COLOR_BLACK): pass
@@ -153,7 +155,7 @@ def BigLong(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,BtnUsed): #Th
     DriveBase.on_for_rotations(steering=-100,speed=-10,rotations=0.45)
     MotSensVar = CMotSens.position
     DriveBase.on(steering=-12,speed=-75)
-    while(CMotSens.position>(360*-2.4)+MotSensVar): pass
+    while(CMotSens.position>(360*-2.25)+MotSensVar): pass
 
 
-    DriveBase.on_for_rotations(steering=0,speed=-80,rotations=8.5)
+    DriveBase.on_for_rotations(steering=0,speed=-80,rotations=9)

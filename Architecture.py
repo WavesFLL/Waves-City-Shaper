@@ -30,16 +30,16 @@ def Architect(Arm, DriveBase, Pusher, CSL, CSR, USS, Lights, BMotSens, CMotSens)
     DriveBase.on_for_rotations(steering=40,speed=15,rotations=0.25)
     DriveBase.on_for_rotations(steering=0,speed=15,rotations=0.15)
     Pusher.on_for_degrees(speed=-10,degrees=100)
-    DriveBase.on_for_rotations(steering=60,speed=15,rotations=0.4)
+    DriveBase.on_for_rotations(steering=60,speed=15,rotations=0.5)
     
     #Follows wall to get the other design and build blocks into the red circle
     MotSensVar = CMotSens.position
     while(CMotSens.position<= (360*1)+MotSensVar): 
-        error = (45 - USS.distance_centimeters)*10.5
+        error = (44.5 - USS.distance_centimeters)*8#used to be 10.5
         error = WCSUtil.constrain(error,-100,100)
         error = 0 - error
         DriveBase.on(steering=error,speed=35)
-    DriveBase.on_for_rotations(steering=0,speed=35,rotations=0.9)
+    DriveBase.on_for_rotations(steering=0,speed=35,rotations=0.8)
     
     #Lifts arm and drives back to base
     Arm.on_for_degrees(speed=-15,degrees=90)
