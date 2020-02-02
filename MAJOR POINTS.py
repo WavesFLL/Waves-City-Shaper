@@ -13,11 +13,12 @@ from ev3dev2.led import *
 import WCSUtilities as Util
 from StuffInCircle import * 
 from Crane import *
-from Alift import *
-from Cake import *
 from TheStick import *
-from Bridge import *
 from GoForIt import *
+from Architecture import *
+from BigLong import *
+from DesignBuild import *
+from NewBridge import *
 
 #Define motors and sensors
 Arm = LargeMotor(OUTPUT_A) #Up and down motion
@@ -34,7 +35,7 @@ CMotSens = MediumMotor(OUTPUT_C)
 BMotSens = MediumMotor(OUTPUT_B)
 Lights.all_off()
 while True:
-    while True: #Makes it so we can have more programs and noy havr to press the back button.
+    while True: #Makes it so we can have more programs and not have to press the back button.
         DriveBase.off(brake=False)
         Arm.off(brake=False)
         Pusher.off(brake=False)
@@ -44,11 +45,11 @@ while True:
         if(Btn.left):
             StuffInCircle(DriveBase,Lights,Arm,Pusher,CSR)  
         if(Btn.up):
-            Crane(DriveBase,Arm,CSL,CSR,BMotSens,CMotSens)
+            BigLong(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,"up")
         if(Btn.right): 
-            TheStick(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,'right')
+            Crane(DriveBase,Arm,CSL,CSR,BMotSens,CMotSens)            
         if(Btn.down):
-            pass
+            Architect(Arm, DriveBase, Pusher, CSL, CSR, USS, Lights, BMotSens, CMotSens)
         if(Btn.enter):
             Btn.wait_for_released("enter")
             print("New menu!")
@@ -60,13 +61,13 @@ while True:
         Lights.set_color("LEFT","RED")
         Lights.set_color("RIGHT","RED")
         if(Btn.left):
-            Bridge(Arm,DriveBase,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,Lights)
+            NewBridge (Arm,DriveBase,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,Lights) 
         if(Btn.up):
-            Alift(DriveBase,Arm,Pusher,CSR,USS)
+            pass
         if(Btn.right): 
-            GoForIt(Arm,DriveBase,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,Lights)
+            pass
         if(Btn.down):
-            Cake(DriveBase)
+            pass
         if(Btn.enter):
             Btn.wait_for_released("enter")
             break
