@@ -31,7 +31,7 @@ def BigLong(DriveBase,Arm,Pusher,CSL,CSR,USS,Btn,CMotSens,BMotSens,BtnUsed): #Th
     MotSensVar = Pusher.position
     Pusher.on_for_degrees(speed=25,degrees=450, block = False)
     while(Pusher.position < 50+MotSensVar): pass
-    DriveBase.on_for_rotations(steering=0,speed=5,rotations=0.1)
+    DriveBase.on_for_rotations(steering=0,speed=2,rotations=0.1)
     Arm.on_for_degrees(speed=-4, degrees=50)
     
     

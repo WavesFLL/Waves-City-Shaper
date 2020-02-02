@@ -38,8 +38,8 @@ def Crane(DriveBase,Arm,CSL,CSR,BMotSens,CMotSens): #The second program, finishe
     DriveBase.on_for_rotations(steering=0,speed=7,rotations=0.27)
     DriveBase.on_for_rotations(steering=-100,speed=20,rotations=0.9)
 
-    #Lifts arm up and down 15 times
-    for i in range(10):
+    #Lifts arm up and down 5 times
+    for i in range(5):
         Arm.on_for_degrees(speed=-10,degrees=19)
         Arm.on_for_degrees(speed=20,degrees=19)
 

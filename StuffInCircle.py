@@ -3,7 +3,8 @@
 from time import sleep #Timers, for waiting
 
 def StuffInCircle(DriveBase,Lights,Arm,Pusher,CSR): #Our first program which does architecture and starts crane
-    sleep(0.5) #Waits for 0.5 seconds so we can remove our hands
+    sleep(0.3) #Waits for 0.3
+     #seconds so we can remove our hands
     Lights.all_off() #Turns all lights off
     Arm.on_for_degrees(speed=10,degrees=-25) #lifts arm slightly so the robot can sstart moving
     DriveBase.on_for_rotations(steering=0,speed=30,rotations=2.2) #Drives forward to get out of base
