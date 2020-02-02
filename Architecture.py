@@ -43,4 +43,4 @@ def Architect(Arm, DriveBase, Pusher, CSL, CSR, USS, Lights, BMotSens, CMotSens)
     
     #Lifts arm and drives back to base
     Arm.on_for_degrees(speed=-15,degrees=90)
-    DriveBase.on_for_rotations(steering=0,speed=50,rotations=-6)
+    DriveBase.on_for_rotations(steering=0,speed=70,rotations=-6)

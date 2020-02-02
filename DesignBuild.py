@@ -33,6 +33,6 @@ def DesignBuild(DriveBase,Lights,Arm,Pusher,CSR):
     Pusher.on_for_rotations(speed=100,rotations=3.6) #Pulls pusher in, so it's not touching crane
     Arm.on_for_degrees(speed=100,degrees=-90, block=False) #Lifts up arm
     DriveBase.on_for_rotations(steering=0,speed=-40, rotations=0.75)#Drives back to base
-    DriveBase.on_for_rotations(steering=-25,speed=-40,rotations=2.5)
-    DriveBase.on_for_rotations(steering=0,speed=-50,rotations=1)
+    DriveBase.on_for_rotations(steering=-25,speed=-45,rotations=2.5)
+    DriveBase.on_for_rotations(steering=0,speed=-65,rotations=1)
     sleep(2)

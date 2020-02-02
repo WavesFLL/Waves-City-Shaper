@@ -22,5 +22,5 @@ def StuffInCircle(DriveBase,Lights,Arm,Pusher,CSR): #Our first program which doe
     Arm.on_for_degrees(speed=100,degrees=-90, block=False) #Lifts up arm
     DriveBase.on_for_rotations(steering=0,speed=-40, rotations=0.75)
     DriveBase.on_for_rotations(steering=-25,speed=-40,rotations=2.5)
-    DriveBase.on_for_rotations(steering=0,speed=-50,rotations=1)
+    DriveBase.on_for_rotations(steering=0,speed=-65,rotations=1)
     sleep(2)
