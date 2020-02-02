@@ -13,10 +13,7 @@ from ev3dev2.led import *
 import WCSUtilities as Util
 from StuffInCircle import * 
 from Crane import *
-from Alift import *
-from Cake import *
 from TheStick import *
-from Bridge import *
 from GoForIt import *
 from Architecture import *
 from BigLong import *
